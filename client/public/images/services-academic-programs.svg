@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2A0F16" />
+      <stop offset="100%" stop-color="#19070D" />
+    </linearGradient>
+    <linearGradient id="burgundyGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6B1E2F" />
+      <stop offset="100%" stop-color="#8E2940" />
+    </linearGradient>
+    <linearGradient id="goldGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C9A227" />
+      <stop offset="100%" stop-color="#E5C158" />
+    </linearGradient>
+    <pattern id="grid1" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#C9A227" stroke-width="0.75" stroke-opacity="0.12" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bgGrad1)" />
+  <rect width="800" height="450" fill="url(#grid1)" />
+
+  <!-- Ambient Glow -->
+  <circle cx="700" cy="80" r="220" fill="#6B1E2F" opacity="0.25" filter="blur(60px)" />
+  <circle cx="150" cy="380" r="180" fill="#C9A227" opacity="0.1" filter="blur(50px)" />
+
+  <!-- Stylized Technical Graphic -->
+  <g transform="translate(60, 60)">
+    <!-- Circuit & Flow Lines -->
+    <path d="M 0 150 L 120 150 L 170 90 L 320 90 L 360 130 L 500 130" fill="none" stroke="#C9A227" stroke-width="2" stroke-opacity="0.4" stroke-dasharray="6,6" />
+    <circle cx="170" cy="90" r="5" fill="#C9A227" />
+    <circle cx="360" cy="130" r="5" fill="#C9A227" />
+
+    <!-- Terminal Window / Card Visual -->
+    <rect x="240" y="40" width="440" height="250" rx="12" fill="#1E0B10" stroke="#6B1E2F" stroke-width="1.5" />
+    <rect x="240" y="40" width="440" height="36" rx="12" fill="#2A0F16" stroke="#6B1E2F" stroke-width="1" />
+    <circle cx="262" cy="58" r="4.5" fill="#6B1E2F" />
+    <circle cx="278" cy="58" r="4.5" fill="#C9A227" />
+    <circle cx="294" cy="58" r="4.5" fill="#3E8E5A" />
+    <text x="320" y="62" font-family="monospace" font-size="11" fill="#E3DFD7" opacity="0.7">SHANKS_CODE // DOMAIN_01 :: ACADEMIC_PROGRAMS</text>
+
+    <!-- Code & Milestone Lines inside window -->
+    <text x="270" y="115" font-family="monospace" font-size="13" font-weight="bold" fill="#C9A227">&gt; Technical Training &amp; Curriculum Execution</text>
+    <text x="270" y="145" font-family="monospace" font-size="12" fill="#E3DFD7" opacity="0.8">  [01] University Curriculum Alignment ...... [VERIFIED]</text>
+    <text x="270" y="175" font-family="monospace" font-size="12" fill="#E3DFD7" opacity="0.8">  [02] AICTE-Approved Internship Modules .... [ACTIVE]</text>
+    <text x="270" y="205" font-family="monospace" font-size="12" fill="#E3DFD7" opacity="0.8">  [03] Practical Laboratory Hand-Off ........ [COMPLIANT]</text>
+    <text x="270" y="235" font-family="monospace" font-size="12" fill="#3E8E5A">  &gt; Status: Practical competency delivered</text>
+
+    <!-- Visual Badge & Accent -->
+    <g transform="translate(0, 40)">
+      <rect width="200" height="80" rx="10" fill="#6B1E2F" opacity="0.85" stroke="#C9A227" stroke-width="1" />
+      <text x="20" y="32" font-family="sans-serif" font-size="10" font-weight="bold" letter-spacing="2" fill="#C9A227">DOMAIN 01</text>
+      <text x="20" y="55" font-family="sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">Academic Training</text>
+    </g>
+
+    <g transform="translate(0, 140)">
+      <rect width="200" height="70" rx="10" fill="#2A0F16" stroke="#6B1E2F" stroke-width="1" />
+      <text x="20" y="30" font-family="sans-serif" font-size="10" font-weight="bold" letter-spacing="1.5" fill="#3E8E5A">AICTE ACCREDITATION</text>
+      <text x="20" y="52" font-family="sans-serif" font-size="13" font-weight="bold" fill="#E3DFD7">Skill Development</text>
+    </g>
+  </g>
+</svg>

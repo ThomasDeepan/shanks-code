@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cfBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E0B10" />
+      <stop offset="100%" stop-color="#2D111A" />
+    </linearGradient>
+    <pattern id="cfGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 24 0 L 0 0 0 24" fill="none" stroke="#C9A227" stroke-width="0.75" stroke-opacity="0.12" />
+    </pattern>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#cfBg)" />
+  <rect width="800" height="450" fill="url(#cfGrid)" />
+  <circle cx="650" cy="120" r="220" fill="#6B1E2F" opacity="0.3" filter="blur(60px)" />
+  <circle cx="150" cy="350" r="180" fill="#C9A227" opacity="0.1" filter="blur(50px)" />
+
+  <g transform="translate(60, 60)">
+    <rect x="0" y="20" width="180" height="30" rx="6" fill="#6B1E2F" stroke="#C9A227" stroke-width="1" />
+    <text x="16" y="40" font-family="monospace" font-size="11" font-weight="bold" fill="#FBF8EE" letter-spacing="1">FULL STACK &amp; SOFTWARE</text>
+
+    <text x="0" y="110" font-family="sans-serif" font-size="34" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">Full-Stack Software</text>
+    <text x="0" y="150" font-family="sans-serif" font-size="34" font-weight="800" fill="#C9A227" letter-spacing="-0.5">Engineering Track</text>
+
+    <text x="0" y="195" font-family="sans-serif" font-size="14" fill="#E3DFD7" opacity="0.85">Component architecture, scalable REST APIs, state containers, and Docker deployment.</text>
+
+    <!-- Tech Stack Pill Group -->
+    <g transform="translate(0, 240)">
+      <rect x="0" y="0" width="105" height="34" rx="8" fill="#15080C" stroke="#3D1822" stroke-width="1" />
+      <text x="18" y="22" font-family="monospace" font-size="12" font-weight="bold" fill="#E3DFD7">TypeScript</text>
+
+      <rect x="115" y="0" width="75" height="34" rx="8" fill="#15080C" stroke="#3D1822" stroke-width="1" />
+      <text x="18" y="22" font-family="monospace" font-size="12" font-weight="bold" fill="#E3DFD7" transform="translate(115, 0)">React</text>
+
+      <rect x="200" y="0" width="85" height="34" rx="8" fill="#15080C" stroke="#3D1822" stroke-width="1" />
+      <text x="18" y="22" font-family="monospace" font-size="12" font-weight="bold" fill="#E3DFD7" transform="translate(200, 0)">Node.js</text>
+
+      <rect x="295" y="0" width="105" height="34" rx="8" fill="#15080C" stroke="#3D1822" stroke-width="1" />
+      <text x="18" y="22" font-family="monospace" font-size="12" font-weight="bold" fill="#E3DFD7" transform="translate(295, 0)">PostgreSQL</text>
+    </g>
+
+    <!-- Code Block Visual -->
+    <g transform="translate(480, 40)">
+      <rect width="200" height="230" rx="12" fill="#15080C" stroke="#6B1E2F" stroke-width="1.5" />
+      <rect width="200" height="32" rx="12" fill="#240D13" stroke="#6B1E2F" stroke-width="1" />
+      <circle cx="16" cy="16" r="3.5" fill="#6B1E2F" />
+      <circle cx="28" cy="16" r="3.5" fill="#C9A227" />
+      <circle cx="40" cy="16" r="3.5" fill="#3E8E5A" />
+      <text x="20" y="65" font-family="monospace" font-size="11" fill="#C9A227">interface Module {</text>
+      <text x="30" y="90" font-family="monospace" font-size="10" fill="#E3DFD7">  id: string;</text>
+      <text x="30" y="115" font-family="monospace" font-size="10" fill="#E3DFD7">  lessons: 9;</text>
+      <text x="30" y="140" font-family="monospace" font-size="10" fill="#3E8E5A">  verified: true;</text>
+      <text x="20" y="165" font-family="monospace" font-size="11" fill="#C9A227">}</text>
+      <text x="20" y="200" font-family="monospace" font-size="10" fill="#C9A227">&gt; 3 Modules Active</text>
+    </g>
+  </g>
+</svg>

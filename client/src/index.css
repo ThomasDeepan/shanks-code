@@ -1,0 +1,393 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* =========================================================================
+     FULL APPROVED DESIGN SYSTEM: NAVY + AMBER + WARM NEUTRALS
+     ========================================================================= */
+
+  /* NAVY SCALE */
+  --navy-muted-bg: #EEF1F6;       /* Alternating section background tint */
+  --navy-border: #D3DAE6;         /* Card borders and divider lines */
+  --navy-muted-icon: #9AA9C4;     /* Muted secondary icon color and placeholder UI */
+  --navy-secondary-text: #5C6F97; /* Inactive navigation links and secondary body text */
+  --navy-secondary: #2F4368;      /* Secondary navy: hover state of primary navy buttons, secondary headings */
+  --navy-primary: #1B2A4A;        /* PRIMARY NAVY: sidebar/nav backgrounds, main headings, primary buttons */
+  --navy-deep: #0F1930;           /* Deep navy: footer background, active/pressed button state */
+
+  /* AMBER SCALE */
+  --amber-bg: #FDF3D9;            /* Amber-tinted background: featured cards, badge backgrounds */
+  --amber-hover: #F5D98A;         /* Amber hover state: button/badge hover */
+  --amber-primary: #D9A62B;       /* PRIMARY AMBER ACCENT: CTA highlights, active tab underline, icons */
+  --amber-dark: #A67C0A;          /* Dark amber: text on light amber backgrounds, pressed states */
+  --amber-strong: #6E4F06;        /* Strong amber text: small labels requiring contrast, Featured/Premium */
+
+  /* WARM NEUTRAL SCALE */
+  --warm-bg: #FAFAF9;             /* Default page background */
+  --warm-border: #E8E6E1;         /* Secondary border/divider color */
+  --warm-disabled: #A8A39A;       /* Disabled/placeholder text */
+  --warm-body: #5F5A50;           /* DEFAULT BODY COPY */
+  --warm-heading: #2E2A24;        /* Strong secondary headings and high-emphasis body text */
+
+  /* WHITE */
+  --color-surface: #FFFFFF;       /* Primary card/content surface ONLY */
+
+  /* Legacy & compatibility mappings */
+  --color-navy: var(--navy-primary);
+  --color-navy-secondary: var(--navy-secondary);
+  --color-page: var(--warm-bg);
+  --color-surface: #FFFFFF;
+  --color-text-primary: var(--navy-primary);
+  --color-text-secondary: var(--warm-body);
+  --color-primary: var(--navy-primary);
+  --color-dark: var(--navy-deep);
+  --color-accent: var(--amber-primary);
+  --color-neutral: var(--warm-bg);
+  --color-body: var(--warm-body);
+  --color-heading: var(--navy-primary);
+}
+
+@layer base {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #5F5A50;
+    background-color: #FAFAF9;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+    scroll-padding-top: 5rem;
+  }
+
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    line-height: 1.6;
+    background-color: #FAFAF9;
+    color: #5F5A50;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #1B2A4A;
+  }
+
+  ::selection {
+    background-color: rgba(217, 166, 43, 0.25);
+    color: #1B2A4A;
+  }
+
+  :focus-visible {
+    outline: 2px solid #1B2A4A;
+    outline-offset: 2px;
+  }
+}
+
+/* Subtle blueprint/tech grid pattern utility tailored for neutral page surface */
+.bg-grid-slate {
+  background-size: 28px 28px;
+  background-image:
+    linear-gradient(to right, rgba(91, 100, 114, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(91, 100, 114, 0.07) 1px, transparent 1px);
+}
+
+/* =========================================================================
+   PHASE 1: DISPLAY TYPOGRAPHY UTILITY
+   Used strictly for major headlines (Hero H1, major section H2s, key editorial statements)
+   ========================================================================= */
+.font-display {
+  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.025em;
+}
+
+/* =========================================================================
+   PHASE 4: SCROLL & REVEAL SYSTEM (Safe, Progressive Enhancement)
+   Default: Content is ALWAYS visible by default.
+   A failed or uninitialized IntersectionObserver NEVER hides content.
+   ========================================================================= */
+.reveal-on-scroll {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes reveal-in {
+  0% {
+    opacity: 0.7;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-on-scroll.is-revealed {
+  animation: reveal-in 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Stagger utilities for children inside revealed sections */
+.reveal-on-scroll.is-revealed.stagger-1 {
+  animation-delay: 60ms;
+}
+
+.reveal-on-scroll.is-revealed.stagger-2 {
+  animation-delay: 120ms;
+}
+
+.reveal-on-scroll.is-revealed.stagger-3 {
+  animation-delay: 180ms;
+}
+
+.reveal-on-scroll.is-revealed.stagger-4 {
+  animation-delay: 240ms;
+}
+
+/* =========================================================================
+   PHASE 5: HOVER & MICRO-INTERACTIONS
+   ========================================================================= */
+/* 1. Card & Box Subtle Lift (Max 3px, no excessive scaling) */
+.hover-lift {
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1), border-color 220ms ease;
+  will-change: transform, box-shadow;
+}
+
+@media (hover: hover) {
+  .hover-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px -4px rgba(27, 42, 74, 0.10), 0 4px 8px -2px rgba(27, 42, 74, 0.04);
+  }
+}
+
+/* 2. Navigation Link: Left-to-Right Draw Underline using Gold Navigation Accent */
+.nav-link-draw {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-link-draw::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #D9A62B;
+  transition: width 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .nav-link-draw:hover::after {
+    width: 100%;
+  }
+}
+
+.nav-link-draw.active::after {
+  width: 100%;
+}
+
+/* 3. Button Bloom: Subtle Navy Shadow Glow */
+.btn-bloom {
+  transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+@media (hover: hover) {
+  .btn-bloom:hover {
+    box-shadow: 0 4px 14px -1px rgba(27, 42, 74, 0.22);
+  }
+}
+
+/* =========================================================================
+   PHASE 6: HERO & TRANSITION MOTION
+   ========================================================================= */
+/* Hero Living Slow Ken Burns Zoom (24 seconds) */
+@keyframes ken-burns-slow {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.04);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns-slow 24s ease-in-out infinite alternate;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* Hero Caption Gentle Upward Slide */
+@keyframes hero-caption-in {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-caption {
+  animation: hero-caption-in 600ms cubic-bezier(0.16, 1, 0.3, 1) 250ms both;
+}
+
+/* Public Route Cross-Fade (180ms) */
+@keyframes route-fade {
+  0% {
+    opacity: 0.92;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.route-cross-fade {
+  animation: route-fade 180ms ease-out forwards;
+}
+
+/* Lesson Completion Checkmark Pop (320ms) */
+@keyframes checkmark-pop {
+  0% {
+    transform: scale(0.82);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-checkmark-pop {
+  animation: checkmark-pop 320ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* =========================================================================
+   TECHNOLOGY DOMAIN GRAPH ANIMATION
+   Restored capability graph. Lightweight SVG + CSS only (no WebGL).
+   ========================================================================= */
+/* Connector flow: dashes travel from the core hub outward to each domain. */
+@keyframes tech-edge-flow {
+  from {
+    stroke-dashoffset: 8;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.tech-edge {
+  animation: tech-edge-flow 2.8s linear infinite;
+  opacity: 0.6;
+}
+
+.tech-edge-active {
+  animation: tech-edge-flow 1.6s linear infinite;
+  opacity: 1;
+}
+
+/* Concentric pulse rings around the core hub. */
+@keyframes tech-hub-pulse {
+  0% {
+    transform: scale(0.82);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(1.16);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.16);
+    opacity: 0;
+  }
+}
+
+.tech-hub-ring {
+  fill: none;
+  stroke: #D9A62B;
+  stroke-width: 0.4;
+  transform-origin: 50% 50%;
+  animation: tech-hub-pulse 3.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.tech-hub-ring-delayed {
+  animation-delay: 1.7s;
+}
+
+/* =========================================================================
+   PHASE 7: STRICT ACCESSIBILITY & REDUCED MOTION OVERRIDES
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-ken-burns {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .animate-hero-caption {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .reveal-on-scroll,
+  .reveal-on-scroll.is-revealed,
+  .reveal-on-scroll.reveal-init {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .hover-lift:hover {
+    transform: none !important;
+  }
+
+  .nav-link-draw::after {
+    transition: none !important;
+  }
+
+  .route-cross-fade {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  .animate-checkmark-pop {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .tech-edge,
+  .tech-edge-active,
+  .tech-hub-ring {
+    animation: none !important;
+    opacity: 1;
+  }
+}

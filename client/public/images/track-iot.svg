@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 340" width="100%" height="100%">
+  <defs>
+    <linearGradient id="tiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A0D12" />
+      <stop offset="100%" stop-color="#2D111A" />
+    </linearGradient>
+    <pattern id="tiPatt" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#6B1E2F" stroke-width="0.75" stroke-opacity="0.25" />
+    </pattern>
+  </defs>
+  <rect width="600" height="340" fill="url(#tiGrad)" />
+  <rect width="600" height="340" fill="url(#tiPatt)" />
+  <circle cx="150" cy="80" r="160" fill="#6B1E2F" opacity="0.25" filter="blur(40px)" />
+  <circle cx="480" cy="240" r="140" fill="#C9A227" opacity="0.12" filter="blur(40px)" />
+  
+  <g transform="translate(40, 40)">
+    <rect width="180" height="26" rx="5" fill="#6B1E2F" stroke="#C9A227" stroke-width="0.75" />
+    <text x="12" y="17" font-family="monospace" font-size="10" font-weight="bold" fill="#FBF8EE" letter-spacing="1">IOT &amp; EMBEDDED TRACK</text>
+    
+    <text x="0" y="80" font-family="sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">IoT &amp; Embedded Systems</text>
+    <text x="0" y="110" font-family="sans-serif" font-size="24" font-weight="800" fill="#C9A227">Engineering</text>
+    
+    <text x="0" y="145" font-family="sans-serif" font-size="12" fill="#E3DFD7" opacity="0.8">Microcontrollers, ESP32/ARM, sensor telemetry &amp; industrial monitoring.</text>
+
+    <!-- Visual schematic node -->
+    <g transform="translate(340, 20)">
+      <rect width="180" height="180" rx="10" fill="#15080C" stroke="#3D1822" stroke-width="1.5" />
+      <rect x="50" y="45" width="80" height="60" rx="6" fill="#2A0F16" stroke="#C9A227" stroke-width="1.5" />
+      <text x="65" y="80" font-family="monospace" font-size="11" font-weight="bold" fill="#C9A227">ESP32</text>
+      <!-- Pin lines -->
+      <path d="M 30 60 L 50 60 M 30 75 L 50 75 M 30 90 L 50 90" stroke="#E3DFD7" stroke-width="1.5" />
+      <path d="M 130 60 L 150 60 M 130 75 L 150 75 M 130 90 L 150 90" stroke="#E3DFD7" stroke-width="1.5" />
+      <text x="45" y="140" font-family="monospace" font-size="10" fill="#3E8E5A">MQTT &#8226; SENSORS</text>
+      <text x="40" y="160" font-family="monospace" font-size="10" fill="#C9A227">EMBEDDED C &#8226; RTOS</text>
+    </g>
+  </g>
+</svg>
