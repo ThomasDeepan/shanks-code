@@ -52,8 +52,9 @@ const recognitionItems: RecognitionItem[] = [
 
 /**
  * RecognitionSection
- * Deliberately compact: a single credential strip rather than four feature
- * cards, since institutional credibility is also summarised in the footer.
+ * Institutional credential strip (AICTE, MSME, EDII-TN Mailam, StartupTN).
+ * Lives in the `about` feature and is rendered by BOTH the homepage and the
+ * `/about` page — the records exist in one place only.
  */
 export const RecognitionSection: React.FC = () => {
   return (

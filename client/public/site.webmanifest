@@ -1,0 +1,17 @@
+{
+  "name": "Shank's Code Edutech",
+  "short_name": "Shank's Code",
+  "description": "Practical technical training, hands-on college workshops and applied R&D for engineering and polytechnic students.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAF9",
+  "theme_color": "#1B2A4A",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

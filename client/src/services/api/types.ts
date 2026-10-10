@@ -56,6 +56,27 @@ export interface ProposedCurrentUserResponse {
 }
 
 /**
+ * Proposed Student Self-Registration Payload
+ * POST /api/auth/register
+ *
+ * The backend owns password hashing, verification and session issuance. The
+ * client submits credentials over the API only — no secret ever lives in the
+ * browser bundle.
+ */
+export interface ProposedRegisterRequest {
+  name: string;
+  email: string;
+  password: string;
+  institution?: string;
+  graduationYear?: string;
+}
+
+export interface ProposedRegisterResponse {
+  token: string;
+  user: AuthUser;
+}
+
+/**
  * Proposed Lesson Completion Payload
  * POST /api/student/courses/:courseId/lessons/:lessonId/complete
  */

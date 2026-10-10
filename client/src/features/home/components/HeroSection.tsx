@@ -54,20 +54,15 @@ export const HeroSection: React.FC = () => {
                   Workshops
                 </Button>
               </Link>
-              <Link to="/login" className="w-full sm:w-auto">
-                <Button variant="outline" size="lg" fullWidth>
-                  Student Portal
-                </Button>
-              </Link>
             </div>
 
-            <a
-              href="/#rd"
+            <Link
+              to="/rnd"
               className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-[#5C6F97] transition-colors hover:text-[#1B2A4A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1B2A4A]"
             >
               <span>Explore R&amp;D</span>
               <ArrowUpRight className="h-4 w-4 text-[#D9A62B]" aria-hidden="true" />
-            </a>
+            </Link>
 
             <ul className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-1 text-xs text-[#2E2A24]">
               <li className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#1B2A4A]">

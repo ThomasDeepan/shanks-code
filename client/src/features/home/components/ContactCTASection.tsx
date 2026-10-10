@@ -61,7 +61,7 @@ export const ContactCTASection: React.FC = () => {
                   Request a Workshop
                 </Button>
               </Link>
-              <Link to="/login" className="w-full sm:w-auto">
+              <Link to="/portal" className="w-full sm:w-auto">
                 <Button
                   variant="outline"
                   size="lg"

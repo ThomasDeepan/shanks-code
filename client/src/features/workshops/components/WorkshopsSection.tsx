@@ -1,17 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Wrench } from 'lucide-react';
 import PageContainer from '@/components/layout/PageContainer';
 import WorkshopCard from './WorkshopCard';
-import { workshops } from '../data/workshopsData';
+import { useWorkshops } from '../hooks/useWorkshops';
+import { workshopStats } from '../data/workshopsData';
 
 /**
- * WorkshopsSection
- * Concise homepage preview of Shank's Code hands-on workshops. Placed directly
- * after the programs preview so visitors understand the practical exposure
- * offering early on the page.
+ * WorkshopsSection (homepage preview)
+ * Concise homepage view of Shank's Code hands-on workshops. The complete
+ * workshop information lives on `/workshops`.
+ *
+ * Records come from `workshopService`, the same source the Admin Dashboard
+ * writes to, so an admin update is reflected here without a code change.
  */
 export const WorkshopsSection: React.FC = () => {
+  const { workshops, isLoading, error } = useWorkshops();
+
   return (
     <section
       aria-labelledby="workshops-heading"
@@ -48,25 +53,64 @@ export const WorkshopsSection: React.FC = () => {
           </Link>
         </div>
 
-        {/* Workshop grid */}
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-6 xl:grid-cols-4">
-          {workshops.map((workshop, index) => (
-            <div key={workshop.id} className={`reveal-on-scroll stagger-${(index % 4) + 1}`}>
-              <WorkshopCard workshop={workshop} />
-            </div>
-          ))}
-        </div>
+        {/* Loading / Error / Success states */}
+        {isLoading && (
+          <div
+            role="status"
+            aria-live="polite"
+            className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-6 xl:grid-cols-4"
+          >
+            {Array.from({ length: 4 }).map((_, index) => (
+              <div
+                key={index}
+                className="h-56 animate-pulse rounded-xl border border-[#D3DAE6] bg-white/70"
+              />
+            ))}
+          </div>
+        )}
 
-        {/* Impact figures live on the Workshops page to keep the homepage concise
-            and to avoid repeating the same numbers in two sections. */}
-        <p className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#5F5A50]">
-          <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#5C6F97]">
-            Workshop reach
-          </span>
-          <span className="font-semibold text-[#1B2A4A]">1000+ students trained</span>
-          <span className="font-semibold text-[#1B2A4A]">25+ workshops conducted</span>
-          <span className="font-semibold text-[#1B2A4A]">10+ colleges collaborated</span>
-        </p>
+        {!isLoading && error && (
+          <p className="rounded-xl border border-[#F0C9B4] bg-[#FBEAE3] p-4 text-sm text-[#B4552C]">
+            {error}
+          </p>
+        )}
+
+        {!isLoading && !error && workshops.length === 0 && (
+          <div className="flex flex-col items-center gap-2 rounded-xl border border-[#D3DAE6] bg-white p-8 text-center">
+            <Wrench className="h-6 w-6 text-[#5C6F97]" aria-hidden="true" />
+            <p className="text-sm font-bold text-[#1B2A4A]">No workshops published yet</p>
+            <p className="max-w-md text-xs leading-relaxed text-[#5F5A50]">
+              Workshop sessions will appear here as soon as they are published.
+            </p>
+          </div>
+        )}
+
+        {!isLoading && !error && workshops.length > 0 && (
+          <>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-6 xl:grid-cols-4">
+              {workshops.slice(0, 4).map((workshop, index) => (
+                <div key={workshop.id} className={`reveal-on-scroll stagger-${(index % 4) + 1}`}>
+                  <WorkshopCard workshop={workshop} />
+                </div>
+              ))}
+            </div>
+
+            {/* Workshop reach figures live on the Workshops page to keep the
+                homepage concise and avoid repeating the same numbers twice. */}
+            <p className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#5F5A50]">
+              <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#5C6F97]">
+                Workshop reach
+              </span>
+              {workshopStats
+                .filter((stat) => stat.value !== 'Hands-on')
+                .map((stat) => (
+                  <span key={stat.label} className="font-semibold text-[#1B2A4A]">
+                    {stat.value} {stat.label.toLowerCase()}
+                  </span>
+                ))}
+            </p>
+          </>
+        )}
       </PageContainer>
     </section>
   );

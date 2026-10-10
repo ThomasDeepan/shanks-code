@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Authenticated and administrative areas hold no public content.
+Disallow: /admin/
+Disallow: /student/
+Disallow: /portal
+Disallow: /login
+Disallow: /signup
+
+Sitemap: https://www.shankscode.com/sitemap.xml

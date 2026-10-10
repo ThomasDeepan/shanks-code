@@ -2,6 +2,18 @@ import React from 'react';
 import { Building2, MapPin, Wrench } from 'lucide-react';
 import type { Workshop } from '../types';
 
+/** Formats an ISO date for display, returning the raw value if unparseable. */
+const formatWorkshopDate = (isoDate: string): string => {
+  const parsed = new Date(isoDate);
+  if (Number.isNaN(parsed.getTime())) return isoDate;
+
+  return parsed.toLocaleDateString('en-IN', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+};
+
 interface WorkshopCardProps {
   workshop: Workshop;
 }
@@ -42,6 +54,23 @@ export const WorkshopCard: React.FC<WorkshopCardProps> = ({ workshop }) => {
         <h3 className="font-display text-lg font-bold leading-snug tracking-tight text-[#1B2A4A]">
           {workshop.title}
         </h3>
+
+        {(workshop.status || workshop.date) && (
+          <p className="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-[#5C6F97]">
+            {workshop.status && (
+              <span
+                className={`rounded border px-1.5 py-0.5 font-semibold ${
+                  workshop.status === 'scheduled'
+                    ? 'border-[#D9A62B]/50 bg-[#FDF3D9] text-[#6E4F06]'
+                    : 'border-[#D3DAE6] bg-[#EEF1F6] text-[#5C6F97]'
+                }`}
+              >
+                {workshop.status}
+              </span>
+            )}
+            {workshop.date && <span>{formatWorkshopDate(workshop.date)}</span>}
+          </p>
+        )}
 
         <div className="flex flex-col gap-1.5 border-y border-[#E8E6E1] py-3 text-[13px] text-[#5F5A50]">
           <span className="flex items-center gap-2">

@@ -1,12 +1,18 @@
 import type { Workshop, WorkshopStat } from '../types';
 
 /**
- * Workshops conducted by Shank's Code Edutech.
- * Content is derived from the official workshop reference material and is kept
- * deliberately factual: institution, location and audience are stated, and no
- * attendance figures, dates or outcomes are invented.
+ * Workshops conducted by Shank's Code Edutech — SEED DATA.
+ *
+ * This is the verified original content from the workshop reference material:
+ * institution, location and audience are stated, and no attendance figures,
+ * dates or outcomes are invented.
+ *
+ * These records seed the browser content store, which is what both the public
+ * `/workshops` page and the Admin Dashboard read (see
+ * `features/workshops/services/workshopService.ts`). Editing a workshop in the
+ * admin updates the public page; "Restore original content" resets to this seed.
  */
-export const workshops: Workshop[] = [
+export const workshopSeed: Workshop[] = [
   {
     id: 'ucev-villupuram',
     code: 'WS-01',
@@ -17,6 +23,7 @@ export const workshops: Workshop[] = [
     summary:
       'A sponsored campus session running hands-on circuit building, microcontroller programming and live hardware demonstrations.',
     focus: ['Embedded Systems', 'Live Demos', 'Hardware Build'],
+    status: 'completed',
   },
   {
     id: 'polytechnic-vellore',
@@ -28,6 +35,7 @@ export const workshops: Workshop[] = [
     summary:
       'A practical session designed for diploma and polytechnic learners, centred on core electronics, basic programming and workshop tooling discipline.',
     focus: ['Practical Electronics', 'Basic Programming', 'Tooling'],
+    status: 'completed',
   },
   {
     id: 'mam-engineering-college',
@@ -39,6 +47,7 @@ export const workshops: Workshop[] = [
     summary:
       'An applied engineering workshop covering project development workflow, system design fundamentals and demonstrable build practice.',
     focus: ['System Design', 'Project Workflow', 'Applied Build'],
+    status: 'completed',
   },
   {
     id: 'saveetha-engineering-college',
@@ -50,8 +59,15 @@ export const workshops: Workshop[] = [
     summary:
       'A technology-focused session bridging classroom theory with working software and hardware systems students can assemble themselves.',
     focus: ['Software Systems', 'IoT', 'Student Projects'],
+    status: 'completed',
   },
 ];
+
+/**
+ * Direct access to the seed records. Prefer `workshopService.getWorkshops()` in
+ * components so admin edits are reflected.
+ */
+export const workshops: Workshop[] = workshopSeed;
 
 /**
  * Workshop impact figures. These live here so the same numbers are rendered by

@@ -1,5 +1,11 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { AuthUser, AuthSession, LoginCredentials } from '../features/auth/types';
+import {
+  AuthUser,
+  AuthSession,
+  LoginCredentials,
+  SignupCredentials,
+  UserRole,
+} from '../features/auth/types';
 import authService from '../features/auth/services/authService';
 import { SESSION_EXPIRED_EVENT } from '@/services/api/client';
 
@@ -8,10 +14,15 @@ export interface AuthContextType {
   token: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;
+  /** Convenience role flag — UI affordance only; the backend enforces access. */
+  role: UserRole | null;
+  isAdmin: boolean;
   sessionExpiredMessage: string | null;
   clearSessionExpiredMessage: () => void;
   loginWithDemo: () => Promise<AuthSession>;
   loginWithCredentials: (credentials: LoginCredentials) => Promise<AuthSession>;
+  loginAsAdmin: (credentials: LoginCredentials) => Promise<AuthSession>;
+  register: (credentials: SignupCredentials) => Promise<AuthSession>;
   logout: () => void;
 }
 
@@ -54,38 +65,70 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setSessionExpiredMessage(null);
   }, []);
 
-  const loginWithDemo = async (): Promise<AuthSession> => {
+  /** Shared success path: persist the session returned by the service. */
+  const applySession = useCallback((session: AuthSession): AuthSession => {
+    setUser(session.user);
+    setToken(session.token);
+    return session;
+  }, []);
+
+  const loginWithDemo = useCallback(async (): Promise<AuthSession> => {
     setIsLoading(true);
     setSessionExpiredMessage(null);
     try {
-      const session = await authService.loginWithDemo();
-      setUser(session.user);
-      setToken(session.token);
-      return session;
+      return applySession(await authService.loginWithDemo());
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [applySession]);
 
-  const loginWithCredentials = async (credentials: LoginCredentials): Promise<AuthSession> => {
-    setIsLoading(true);
-    setSessionExpiredMessage(null);
-    try {
-      const session = await authService.loginWithCredentials(credentials);
-      setUser(session.user);
-      setToken(session.token);
-      return session;
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const loginWithCredentials = useCallback(
+    async (credentials: LoginCredentials): Promise<AuthSession> => {
+      setIsLoading(true);
+      setSessionExpiredMessage(null);
+      try {
+        return applySession(await authService.loginWithCredentials(credentials));
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [applySession]
+  );
 
-  const logout = (): void => {
-    authService.logout();
+  const loginAsAdmin = useCallback(
+    async (credentials: LoginCredentials): Promise<AuthSession> => {
+      setIsLoading(true);
+      setSessionExpiredMessage(null);
+      try {
+        return applySession(await authService.loginAsAdmin(credentials));
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [applySession]
+  );
+
+  const register = useCallback(
+    async (credentials: SignupCredentials): Promise<AuthSession> => {
+      setIsLoading(true);
+      setSessionExpiredMessage(null);
+      try {
+        return applySession(await authService.register(credentials));
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [applySession]
+  );
+
+  const logout = useCallback((): void => {
+    void authService.logout();
     setUser(null);
     setToken(null);
     setSessionExpiredMessage(null);
-  };
+  }, []);
+
+  const role = user?.role ?? null;
 
   return (
     <AuthContext.Provider
@@ -94,10 +137,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         token,
         isAuthenticated: Boolean(user && token),
         isLoading,
+        role,
+        isAdmin: role === 'admin',
         sessionExpiredMessage,
         clearSessionExpiredMessage,
         loginWithDemo,
         loginWithCredentials,
+        loginAsAdmin,
+        register,
         logout,
       }}
     >

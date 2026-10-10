@@ -12,7 +12,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   isMobileOpen = false,
   onCloseMobile,
 }) => {
-  const { user, logout } = useAuth();
+  const { user, logout, isAdmin } = useAuth();
   const navigate = useNavigate();
 
   // Handle escape key to close mobile sidebar
@@ -28,7 +28,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate(isAdmin ? '/admin/login' : '/login');
   };
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>

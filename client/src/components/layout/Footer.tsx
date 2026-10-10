@@ -50,22 +50,18 @@ export const Footer: React.FC = () => {
               className="flex flex-col space-y-2 text-xs sm:text-sm"
               aria-label="Footer Explore Navigation"
             >
-              <Link
-                to="/"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="text-slate-300 transition-colors hover:text-white"
-              >
+              <Link to="/" className="text-slate-300 transition-colors hover:text-white">
                 Home
               </Link>
-              <a href="/#about" className="text-slate-300 transition-colors hover:text-white">
+              <Link to="/about" className="text-slate-300 transition-colors hover:text-white">
                 About
-              </a>
-              <a href="/#services" className="text-slate-300 transition-colors hover:text-white">
+              </Link>
+              <Link to="/services" className="text-slate-300 transition-colors hover:text-white">
                 Services
-              </a>
-              <a href="/#rd" className="text-slate-300 transition-colors hover:text-white">
+              </Link>
+              <Link to="/rnd" className="text-slate-300 transition-colors hover:text-white">
                 R&amp;D Division
-              </a>
+              </Link>
             </nav>
           </div>
 
@@ -85,7 +81,7 @@ export const Footer: React.FC = () => {
                 Workshops
               </Link>
               <Link
-                to="/login"
+                to="/portal"
                 className="font-semibold text-white underline decoration-[#D9A62B] transition-colors hover:text-[#F5D98A]"
               >
                 Student Portal

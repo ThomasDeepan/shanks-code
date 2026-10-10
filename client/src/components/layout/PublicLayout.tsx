@@ -5,7 +5,15 @@ import Footer from './Footer';
 import useScrollReveal from '@/components/common/useScrollReveal';
 import useRouteHashSync from '@/components/common/useRouteHashSync';
 
-export const PublicLayout: React.FC = () => {
+export interface PublicLayoutProps {
+  /**
+   * Optional explicit content. Used by the global 404 route, which renders
+   * inside this shell instead of an `<Outlet />`.
+   */
+  children?: React.ReactNode;
+}
+
+export const PublicLayout: React.FC<PublicLayoutProps> = ({ children }) => {
   const { pathname } = useLocation();
   const mainRef = useRef<HTMLElement>(null);
 
@@ -19,7 +27,7 @@ export const PublicLayout: React.FC = () => {
     <div className="min-h-screen flex flex-col bg-[#F5F6F8] text-[#1A1F2B]">
       <Navbar />
       <main ref={mainRef} key={pathname} className="flex-1 flex flex-col route-cross-fade">
-        <Outlet />
+        {children ?? <Outlet />}
       </main>
       <Footer />
     </div>

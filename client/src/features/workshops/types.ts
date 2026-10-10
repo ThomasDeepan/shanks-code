@@ -2,6 +2,10 @@
  * Workshops feature types.
  * Kept deliberately narrow so the public workshop listing can be sourced
  * from a static dataset today and a REST endpoint later without UI changes.
+ *
+ * `image` / `imageAlt` are admin-manageable: a workshop may carry its own
+ * photograph, and until one exists the card falls back to a typographic panel
+ * rather than substituting unrelated stock imagery.
  */
 
 export type WorkshopAudience =
@@ -10,6 +14,8 @@ export type WorkshopAudience =
   | 'Academic Institutions'
   | 'Students'
   | 'Technical Communities';
+
+export type WorkshopStatus = 'completed' | 'scheduled';
 
 export interface Workshop {
   /** Stable identifier used for anchors and future detail routes. */
@@ -36,6 +42,12 @@ export interface Workshop {
    */
   image?: string;
   imageAlt?: string;
+  /**
+   * ISO date (YYYY-MM-DD) when the session ran or is scheduled. Optional
+   * because attendance dates are not published for every session yet.
+   */
+  date?: string;
+  status: WorkshopStatus;
 }
 
 export interface WorkshopStat {
