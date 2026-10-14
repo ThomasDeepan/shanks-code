@@ -66,7 +66,7 @@ export const ContactCTASection: React.FC = () => {
                   variant="outline"
                   size="lg"
                   fullWidth
-                  className="border-2 border-[#2F4368] bg-transparent font-semibold text-white shadow-xs hover:border-white hover:bg-white/5"
+                  className="!border-2 !border-[#2F4368] !bg-transparent !text-white font-semibold shadow-xs hover:!border-white hover:!bg-white/5"
                 >
                   Student Portal
                 </Button>

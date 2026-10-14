@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowUpRight, Cpu, Brain, Layers } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import PageContainer from '@/components/layout/PageContainer';
 import Button from '@/components/ui/Button';
 
-const CORE_DOMAINS = [
-  { label: 'Full Stack & Software', Icon: Layers },
-  { label: 'IoT & Embedded Systems', Icon: Cpu },
-  { label: 'AI & Data Science', Icon: Brain },
-];
-
+/**
+ * HeroSection
+ * Single, strong introduction: what Shank's Code Edutech does, in one sentence,
+ * with two clear next steps. Everything that used to sit below the CTAs (the
+ * separate R&D text link and the core-domain chip list) duplicated the services,
+ * R&D and capability sections further down the page and has been removed.
+ */
 export const HeroSection: React.FC = () => {
   return (
     <section
@@ -33,8 +34,8 @@ export const HeroSection: React.FC = () => {
             </h1>
 
             <p className="max-w-2xl text-base leading-relaxed text-[#5F5A50] sm:text-lg">
-              Shank&apos;s Code Edutech runs practical engineering programs, AICTE-approved internships,
-              hands-on college workshops and applied R&amp;D for engineering and polytechnic students.
+              Practical engineering programs, AICTE-approved internships, hands-on college workshops
+              and applied R&amp;D &mdash; for engineering and polytechnic students.
             </p>
 
             <div className="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
@@ -51,30 +52,10 @@ export const HeroSection: React.FC = () => {
               </Link>
               <Link to="/workshops" className="w-full sm:w-auto">
                 <Button variant="outline" size="lg" fullWidth>
-                  Workshops
+                  Request a Workshop
                 </Button>
               </Link>
             </div>
-
-            <Link
-              to="/rnd"
-              className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-[#5C6F97] transition-colors hover:text-[#1B2A4A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1B2A4A]"
-            >
-              <span>Explore R&amp;D</span>
-              <ArrowUpRight className="h-4 w-4 text-[#D9A62B]" aria-hidden="true" />
-            </Link>
-
-            <ul className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-1 text-xs text-[#2E2A24]">
-              <li className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#1B2A4A]">
-                Core Domains
-              </li>
-              {CORE_DOMAINS.map(({ label, Icon }) => (
-                <li key={label} className="inline-flex items-center gap-1.5 font-medium">
-                  <Icon className="h-3.5 w-3.5 shrink-0 text-[#D9A62B]" aria-hidden="true" />
-                  {label}
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Right Column: Laboratory Photography */}

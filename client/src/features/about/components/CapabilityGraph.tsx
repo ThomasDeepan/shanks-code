@@ -1,7 +1,7 @@
 import React, { useId, useState } from 'react';
 import { Binary, BrainCircuit, Cpu, FlaskConical } from 'lucide-react';
-import { TECH_DOMAIN_NODES, TECH_CORE } from '../data/techDomainsData';
-import type { TechDomainNode } from '../data/techDomainsData';
+import { TECH_DOMAIN_NODES, TECH_CORE } from '../data/capabilityDomains';
+import type { TechDomainNode } from '../data/capabilityDomains';
 
 const NODE_ICONS: Record<string, React.ElementType> = {
   software: Binary,

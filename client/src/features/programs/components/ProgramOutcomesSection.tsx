@@ -38,12 +38,12 @@ const verifiedOutcomes: OutcomeItem[] = [
 ];
 
 /**
- * AlumniOutcomesSection
+ * ProgramOutcomesSection
  * Shows audited project outcomes. Testimonials are intentionally excluded —
  * they are published only once student consent and partner-college validation
  * are complete, so no placeholder testimonial panel is rendered.
  */
-export const AlumniOutcomesSection: React.FC = () => {
+export const ProgramOutcomesSection: React.FC = () => {
   return (
     <section
       id="outcomes"
@@ -136,4 +136,4 @@ export const AlumniOutcomesSection: React.FC = () => {
   );
 };
 
-export default AlumniOutcomesSection;
+export default ProgramOutcomesSection;

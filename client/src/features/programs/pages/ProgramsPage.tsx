@@ -8,6 +8,8 @@ import ProgramSearch from '../components/ProgramSearch';
 import ProgramFilters from '../components/ProgramFilters';
 import ProgramCard, { ProgramItem } from '../components/ProgramCard';
 import AppliedProgramsTracks from '../components/AppliedProgramsTracks';
+import ProgramsPhilosophy from '../components/ProgramsPhilosophy';
+import ProgramOutcomesSection from '../components/ProgramOutcomesSection';
 import programService from '../services/programService';
 import { ApiError } from '@/services/api/errors';
 
@@ -122,8 +124,11 @@ export const ProgramsPage: React.FC = () => {
           </div>
         )}
 
+        {/* Educational philosophy — relocated here from the homepage */}
+        <ProgramsPhilosophy className="mt-10" />
+
         {/* Two Distinct Structural Color Worlds: Software & Data Systems + Hardware, Robotics & AI */}
-        <AppliedProgramsTracks showIntroHeading={false} className="mb-14" />
+        <AppliedProgramsTracks showIntroHeading={false} className="mt-14" />
 
         {/* Catalog Search & Filter Section Header */}
         <div className="pt-10 border-t border-[#D3DAE6] mb-6">
@@ -232,6 +237,9 @@ export const ProgramsPage: React.FC = () => {
           </>
         )}
       </PageContainer>
+
+      {/* Audited cohort outcomes — relocated here from the homepage */}
+      <ProgramOutcomesSection />
     </div>
   );
 };

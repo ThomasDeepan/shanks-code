@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Seo from '@/components/common/Seo';
 import PageHeader from '@/components/layout/PageHeader';
 import PageContainer from '@/components/layout/PageContainer';
@@ -9,6 +9,8 @@ import Button from '@/components/ui/Button';
 import VisionMissionGrid from '../components/VisionMissionGrid';
 import MethodologySection from '../components/MethodologySection';
 import RecognitionSection from '../components/RecognitionSection';
+import CoreCommitmentSection from '../components/CoreCommitmentSection';
+import CapabilityMapSection from '../components/CapabilityMapSection';
 import FaqSection from '@/features/faq/components/FaqSection';
 import { faqItems } from '@/features/faq/data/faqData';
 import { aboutIdentity, aboutPageCopy } from '../data/aboutContent';
@@ -21,25 +23,6 @@ import { absoluteUrl, CONTACT } from '@/constants/site';
  * and the shared components, so this page and the homepage About section can
  * never disagree. Nothing was removed from the site to create it.
  */
-
-const WHY_US = [
-  {
-    title: 'Verifiable delivery',
-    desc: 'Every program closes with a reviewed, recordable deliverable rather than only a completion badge.',
-  },
-  {
-    title: 'Applied, not theoretical',
-    desc: 'Live industry problem statements, hardware sensor kits and functional prototypes are the teaching material.',
-  },
-  {
-    title: 'Research-backed practice',
-    desc: 'The lab that develops applied R&D also sets the method used in student programs.',
-  },
-  {
-    title: 'Institution-friendly',
-    desc: 'MoUs, faculty enablement, shared lab access and campus workshops for engineering and polytechnic colleges.',
-  },
-];
 
 export const AboutPage: React.FC = () => {
   const jsonLd = useMemo(
@@ -136,40 +119,18 @@ export const AboutPage: React.FC = () => {
         </PageContainer>
       </section>
 
-      {/* Why us */}
-      <section aria-labelledby="why-us-heading" className="w-full bg-[#FAFAF9] py-14 md:py-20">
-        <PageContainer>
-          <div className="mb-8 max-w-3xl space-y-3">
-            <div className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-[#5C6F97]">
-              How we work
-            </div>
-            <h2
-              id="why-us-heading"
-              className="font-display text-2xl font-extrabold leading-tight tracking-tight text-[#1B2A4A] sm:text-3xl"
-            >
-              Four commitments that shape every engagement
-            </h2>
-          </div>
-
-          <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {WHY_US.map((item) => (
-              <li
-                key={item.title}
-                className="hover-lift flex flex-col rounded-xl border border-[#D3DAE6] bg-white p-5 shadow-xs"
-              >
-                <CheckCircle2 className="mb-3 h-5 w-5 text-[#D9A62B]" aria-hidden="true" />
-                <h3 className="text-[15px] font-bold leading-snug tracking-tight text-[#1B2A4A]">
-                  {item.title}
-                </h3>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-[#5F5A50]">{item.desc}</p>
-              </li>
-            ))}
-          </ul>
-        </PageContainer>
-      </section>
+      {/* Core commitment + delivery pillars — relocated here from the homepage.
+          This replaces the previous four-card "How we work" grid, whose content is
+          fully covered by the primary pillar and supporting pillars below. */}
+      <div className="w-full bg-[#FAFAF9]">
+        <CoreCommitmentSection />
+      </div>
 
       {/* Proven engineering methodology (shared component, full width) */}
       <MethodologySection />
+
+      {/* Animated capability map — relocated here from the homepage */}
+      <CapabilityMapSection />
 
       {/* Recognition / credentials (shared with homepage) */}
       <div className="w-full bg-[#FAFAF9]">

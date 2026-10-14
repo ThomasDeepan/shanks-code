@@ -18,7 +18,7 @@ interface Pillar {
 }
 
 /**
- * Restored from the original `WhyChooseUsSection` — the primary educational
+ * Relocated from the homepage `WhyShanksCodeSection` — the primary educational
  * pillar, its proof points, and the five supporting capabilities. Content is
  * preserved; presentation uses the current refined card and spacing language.
  */
@@ -60,7 +60,7 @@ const proofPoints = [
 
 const commitmentTags = ['Verifiable Standards', 'Applied R&D Focus', 'Defensible Prototypes'];
 
-export const WhyShanksCodeSection: React.FC = () => {
+export const CoreCommitmentSection: React.FC = () => {
   return (
     <section
       aria-labelledby="why-choose-heading"
@@ -180,4 +180,4 @@ export const WhyShanksCodeSection: React.FC = () => {
   );
 };
 
-export default WhyShanksCodeSection;
+export default CoreCommitmentSection;

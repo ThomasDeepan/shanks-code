@@ -13,10 +13,10 @@ export const CompanyStatsSection: React.FC = () => {
   return (
     <section
       aria-label="Company impact metrics"
-      className="w-full border-b border-[#D3DAE6] bg-[#EEF1F6] py-9 md:py-12"
+      className="w-full border-b border-[#D3DAE6] bg-[#EEF1F6] py-8 md:py-10"
     >
       <PageContainer>
-        <div className="grid grid-cols-2 gap-y-8 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-[#D3DAE6]">
+        <div className="grid grid-cols-2 gap-y-6 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-[#D3DAE6]">
           {impactMetrics.map((metric, index) => (
             <div
               key={metric.label}
